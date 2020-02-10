@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
-module.exports = db.sequelize.define(
+const User = db.sequelize.define(
   'user',
   {
     id: {
@@ -29,4 +29,11 @@ module.exports = db.sequelize.define(
   {
     timestamps: false
   }
-)
+);
+(async () => {
+  await User.sync({force:true}); 
+  var user = await User.create({email:'a1bc@gmail.com'});
+  user.save();
+})();
+
+module.exports = User
