@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('../database/db.js')
+const db = require('./../../../database/db.js')
 
 const User = db.sequelize.define(
   'user',
@@ -31,7 +31,7 @@ const User = db.sequelize.define(
   }
 );
 (async () => {
-  await User.sync({force:true}); 
+  await User.sync({alter:true}); 
   var user = await User.create({email:'a1bc@gmail.com'});
   user.save();
 })();

@@ -1,10 +1,10 @@
 import axios from 'axios'
+import {Profile} from './../../user/User';
 
 export const register = newUser => {
   return axios
     .post('users/register', {
-      first_name: newUser.first_name,
-      last_name: newUser.last_name,
+      user: newUser.user,
       email: newUser.email,
       password: newUser.password
     })
@@ -20,10 +20,14 @@ export const login = user => {
       password: user.password
     })
     .then(response => {
-      localStorage.setItem('usertoken', response.data)
+      console.log("response");
+
+      Profile.setToken(response.data);
+      // localStorage.setItem('usertoken', response.data)
       return response.data
     })
     .catch(err => {
+      console.log("errore");
       console.log(err)
     })
 }
