@@ -8,14 +8,13 @@ const bcrypt = require('bcrypt')
 const User = require('../models/User')
 users.use(cors())
 
-process.env.SECRET_KEY = 'secret'
-
 users.post('/register', (req, res) => {
   const today = new Date()
   const userData = {
     user: req.body.user,
     email: req.body.email,
     password: req.body.password,
+    role:'member',
     created: today
   }
 
@@ -70,6 +69,9 @@ users.post('/login', (req, res) => {
 })
 
 users.get('/profile', (req, res) => {
+  let from = req.query.from;
+  let to = req.query.to;
+  console.log("get all from:" + from +"| to:"+ to)
   console.log("authorization"+ JSON.stringify(req.headers))
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 

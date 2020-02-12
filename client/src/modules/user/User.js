@@ -3,13 +3,8 @@ import jwt_decode from 'jwt-decode'
 import UserLogin from './components/UserLogin'
 import UserProfile from './components/UserProfile'
 
-class User extends Component{
-    render(){
-        return "abc";
-    }
-}
-
 const user = {
+    isAuthenticated:false,
     id:-1,
     user:"",
     email:"",
@@ -26,12 +21,7 @@ const Profile = {
         }
     },
     setToken:function(token){
-        localStorage.setItem('usertoken', token)
-    },
-    getUser:function(){
-        console.log("get user");
-       const token = localStorage.usertoken
-        if(token){
+        if(token && token != ''){
             console.log('token:' + token)
             const decoded = jwt_decode(token)
             console.log('decoded:' + JSON.stringify(decoded))
@@ -39,18 +29,27 @@ const Profile = {
             user.user = decoded.user;
             user.email = decoded.email;
             user.role = decoded.role;
-            return user;
+            user.isAuthenticated = true;
+        }else{
+            user.id = -1;
+            user.user = '';
+            user.email = '';
+            user.role = '';
+            user.isAuthenticated = false;
         }
-        return {};
+        localStorage.setItem('usertoken', token)
+    },
+    getUser:function(){
+        return user;
     }
 };
 function UserUtils(){
     console.log("user Utils")
 }
-export default User;
 export {
     Profile,
     UserUtils,
     UserProfile,
-    UserLogin
+    UserLogin,
+    user
 }

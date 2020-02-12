@@ -12,6 +12,8 @@ class UserLogin extends Component {
 
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.onRegsiter = this.onRegsiter.bind(this)
+
   }
 
   onChange(e) {
@@ -30,6 +32,10 @@ class UserLogin extends Component {
         this.props.history.push('/profile')
       }
     })
+  }
+  onRegsiter(e){
+    e.preventDefault()
+    this.props.history.push('/register')
   }
 
   render() {
@@ -61,12 +67,23 @@ class UserLogin extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div className="form-group">
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
               >
                 Sign in
               </button>
+              </div>
+              <div className="form-group">
+              <button
+                type="button"
+                className="btn btn-lg btn-primary btn-link col-12"
+                onClick={this.onRegsiter}
+              >
+                register
+              </button>
+              </div>
             </form>
           </div>
         </div>

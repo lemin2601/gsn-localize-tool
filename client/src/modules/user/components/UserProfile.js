@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
-import { Profile as UserProfile } from '../User'
+import { Profile as UserProfile} from '../User'
 import UserChangePassword from './UserChangePassword'
 import { detail } from '../api/UserApi'
 

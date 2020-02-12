@@ -67,6 +67,13 @@ class Login extends Component {
               >
                 Sign in
               </button>
+              <a
+                type="button"
+                className="btn btn-lg btn-link"
+                onClick={this.onRegister}
+              >
+                Register
+              </a>
             </form>
           </div>
         </div>
